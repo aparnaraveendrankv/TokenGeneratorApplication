@@ -23,6 +23,7 @@ Clone the repository to your local machine using:
 
 
 git clone: https://github.com/aparnaraveendrankv/TokenGeneratorApplication
+
 cd token-generator
 
 
