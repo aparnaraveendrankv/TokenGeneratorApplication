@@ -2,31 +2,38 @@ import React, { useState } from 'react';
 import { Grid, TextField, Button, Typography, Box, Chip } from '@mui/material';
 
 const TokenGenerator = () => {
-  const [blueCount, setBlueCount] = useState('');
-  const [bluePrefix, setBluePrefix] = useState('');
-  const [bluePerRow, setBluePerRow] = useState('');
-  const [redCount, setRedCount] = useState('');
-  const [redPrefix, setRedPrefix] = useState('');
-  const [redPerRow, setRedPerRow] = useState('');
+  // State variables to manage form inputs and generated tokens
+  const [blueCount, setBlueCount] = useState(''); // Number of blue tokens
+  const [bluePrefix, setBluePrefix] = useState(''); // Prefix for blue tokens
+  const [bluePerRow, setBluePerRow] = useState(''); // Number of blue tokens per row
+  const [redCount, setRedCount] = useState(''); // Number of red tokens
+  const [redPrefix, setRedPrefix] = useState(''); // Prefix for red tokens
+  const [redPerRow, setRedPerRow] = useState(''); // Number of red tokens per row
 
+  // State variables to store generated tokens
   const [blueTokens, setBlueTokens] = useState([]);
   const [redTokens, setRedTokens] = useState([]);
 
+  // Function to generate tokens based on input values
   const generateTokens = () => {
+    // Generate blue tokens
     const blueArray = [];
     for (let i = 1; i <= blueCount; i++) {
       blueArray.push(`${bluePrefix}${i}`);
     }
 
+    // Generate red tokens
     const redArray = [];
     for (let i = 1; i <= redCount; i++) {
       redArray.push(`${redPrefix}${i}`);
     }
 
+    // Update state with generated tokens
     setBlueTokens(blueArray);
     setRedTokens(redArray);
   };
 
+  // Function to clear form inputs and generated tokens
   const clearForm = () => {
     setBlueCount('');
     setBluePrefix('');
@@ -38,12 +45,15 @@ const TokenGenerator = () => {
     setRedTokens([]);
   };
 
+  // Function to render tokens in rows based on perRow value and color
   const renderTokensInRows = (tokens, perRow, color) => {
+    // Split tokens into rows
     const rows = [];
     for (let i = 0; i < tokens.length; i += perRow) {
       rows.push(tokens.slice(i, i + perRow));
     }
 
+    // Map rows to Grid components with tokens as Chips
     return rows.map((row, rowIndex) => (
       <Grid container key={rowIndex} spacing={1} justifyContent="center">
         {row.map((token, index) => (
@@ -75,6 +85,7 @@ const TokenGenerator = () => {
         Token Generator
       </Typography>
 
+      {/* Form to input values for token generation */}
       <Grid container spacing={3} justifyContent="center">
         <Grid item xs={12} sm={6} md={4}>
           <TextField
@@ -130,6 +141,7 @@ const TokenGenerator = () => {
         </Grid>
       </Grid>
 
+      {/* Buttons to generate tokens or clear the form */}
       <Box sx={{ marginTop: 3, textAlign: 'center' }}>
         <Button variant="contained" color="primary" onClick={generateTokens}>
           Generate
@@ -144,6 +156,7 @@ const TokenGenerator = () => {
         </Button>
       </Box>
 
+      {/* Display blue tokens */}
       <Box sx={{ marginTop: 4 }}>
         <Typography variant="h6" textAlign="center" sx={{ fontWeight: 'bold', marginBottom: 2 }}>
           Blue Tokens
@@ -151,6 +164,7 @@ const TokenGenerator = () => {
         {bluePerRow > 0 && renderTokensInRows(blueTokens, Number(bluePerRow), 'blue')}
       </Box>
 
+      {/* Display red tokens */}
       <Box sx={{ marginTop: 4 }}>
         <Typography variant="h6" textAlign="center" sx={{ fontWeight: 'bold', marginBottom: 2 }}>
           Red Tokens
