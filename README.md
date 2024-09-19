@@ -22,7 +22,7 @@ The Token Generator is a React application that allows users to generate and dis
 Clone the repository to your local machine using:
 
 
-git clone https://github.com/yourusername/token-generator.git
+git clone: https://github.com/aparnaraveendrankv/TokenGeneratorApplication
 cd token-generator
 
 
